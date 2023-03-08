@@ -39,13 +39,13 @@ Pemanfaatan teknologi Artificial Intelligence (AI) dalam menentukan rute wisata 
 
 #### Rancangan Fitur Solusi
 
-<img src="assets/fitur.png">
+<img style="width: 60%" src="assets/fitur.png">
 
 #### Analisis Kompetitor
 
 1. Kompetitor 1: Tripadvisor
-   <img src="assets/kompetitor1.png">
+   <br><img  style="width: 50%" src="assets/kompetitor1.png">
 2. Kompetitor 2: Jogja Istimewa
-   <img src="assets/kompetitor2.png">
+   <br><img  style="width: 50%" src="assets/kompetitor2.png">
 3. Kompetitor 3: Google Trips
-   <img src="assets/kompetitor3.png">
+   <br><img  style="width: 50%" src="assets/kompetitor3.png">
