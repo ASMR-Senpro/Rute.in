@@ -4,7 +4,7 @@ const cloudinary = require('../database/cloudinary')
 exports.create = async (req, res) => {
     if (!req.body) {
         res.status(404).json({
-            message: "Data cannot be empty"
+            message: 'Data cannot be empty'
         })
     }
 
@@ -89,7 +89,16 @@ exports.edit = async (req, res) => {
     const {name, coordinat, location, description, imageURL, price, rating} = req.body
 
     try {
-
+        const newDest = await destination.update({
+            
+        },{where:{
+            id: desID
+        }})
+        res.status(200).json({
+            success: true,
+            message: 'Destination has been updated!',
+            data: newDest
+        })
     }
     catch (error) {
         res.status(400).json({
@@ -100,4 +109,13 @@ exports.edit = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const desID = req.params.desID;
+
+    try{
+
+    }
+    catch(error){
+        res.status(400).json({
+            message: error
+        })
+    }
 }
