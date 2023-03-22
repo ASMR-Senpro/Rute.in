@@ -1,13 +1,16 @@
-import "./App.css"
+import React from "react"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Landing from "./pages/Landing.js"
+import Test from "./pages/Test.js"
 
 function App() {
   return (
-    <div className="App">
-      <div className="h-[720px] bg-neutral-100 flex flex-col justify-center items-center">
-        <p className="text-cyan-700 text-h-lg">halo</p>
-        <p className="text-b-md">masuk kk</p>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" caseSensitive={false} element={<Landing />} />
+        <Route path="/test" caseSensitive={false} element={<Test />} />
+      </Routes>
+    </Router>
   )
 }
 
