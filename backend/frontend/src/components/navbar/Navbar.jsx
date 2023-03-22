@@ -1,12 +1,17 @@
-import RuteinLogo from "../logo/RuteinLogo"
-import LoginBtn from "../button/LoginBtn"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
+import RuteinLogo from "../logo/RuteinLogo"
+import LoginBtn from "../button/LoginBtn"
+import Sidebar from "./Sidebar"
+import Backdrop from "./Backdrop"
+
 export default function Navbar() {
-  //   const [sidebar, setSidebar] = useState(false)
-  //   const toggleSidebar = () => {
-  //     setSidebar((prevState) => !prevState)
-  //   }
+  const [sidebar, setSidebar] = useState(false)
+
+  const toggleSidebar = () => {
+    setSidebar((prevState) => !prevState)
+  }
 
   return (
     <nav className="w-full top-0 fixed z-[9999]">
@@ -23,7 +28,7 @@ export default function Navbar() {
               <div className="md:hidden">
                 <button
                   className="p-2 text-neutral-700 rounded-md outline-none focus:border-neutral-400 focus:border"
-                  // onClick={toggleSidebar}
+                  onClick={toggleSidebar}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -74,8 +79,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      {/* <Backdrop sidebar={sidebar} closeSidebar={toggleSidebar} />
-      <Sidebar sidebar={sidebar} /> */}
+      <Backdrop sidebar={sidebar} closeSidebar={toggleSidebar} />
+      <Sidebar sidebar={sidebar} />
     </nav>
   )
 }
