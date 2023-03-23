@@ -70,6 +70,12 @@ exports.signIn = async (req, res) => {
     }
 }
 
-exports.signOut = async (req, res) => {
+exports.getByID = async (req, res) => {
+    const userID = req.params.uid
+}
 
+exports.edit = async (req, res) => {
+    if(!req.body){
+        res.status(404).json({message:'Data cannot be empty'})
+    }
 }
