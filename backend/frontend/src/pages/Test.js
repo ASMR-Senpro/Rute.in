@@ -4,6 +4,7 @@ import LoginBtn from "../components/button/LoginBtn"
 import SocialBtn from "../components/button/SocialBtn"
 import Footer from "../components/footer/Footer"
 import RuteinLogo from "../components/logo/RuteinLogo"
+import DeleteModal from "../components/modal/DeleteModal"
 import Navbar from "../components/navbar/Navbar"
 
 const Test = () => {
@@ -29,6 +30,10 @@ const Test = () => {
 
       <div className="my-16">
         <Footer />
+      </div>
+
+      <div className="my-16">
+        <DeleteModal />
       </div>
     </div>
   )
