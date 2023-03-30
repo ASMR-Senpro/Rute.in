@@ -14,8 +14,10 @@
     "react-router-dom": "^6.9.0",
     "react-script": "^2.0.5",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-slideshow-image": "^4.2.1",
     "react-toastify": "^9.1.1",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
