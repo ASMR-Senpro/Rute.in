@@ -1,0 +1,28 @@
+.slick-slide > div {
+  margin: 24px;
+  width: 320px;
+  height: 420px;
+  background-color: white;
+  border: solid 3px #d3d3d3;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+
+.slick-arrow {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background-color: #d3d3d3;
+  border-radius: 100%;
+}
+
+.slick-arrow:hover {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background-color: #d3d3d3;
+  border-radius: 100%;
+}

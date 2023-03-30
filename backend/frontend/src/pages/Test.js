@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import LoginBtn from "../components/button/LoginBtn"
 import SocialBtn from "../components/button/SocialBtn"
+import Carousel from "../components/carousel/Carousel"
 import Footer from "../components/footer/Footer"
 import RuteinLogo from "../components/logo/RuteinLogo"
 import DeleteModal from "../components/modal/DeleteModal"
@@ -16,6 +17,10 @@ const Test = () => {
       </div>
 
       <main className="px-12 mt-32">
+        <div className="mt-12">
+          <Carousel />
+        </div>
+
         <div className="my-16">
           <LoginBtn />
         </div>
@@ -47,6 +52,8 @@ const Test = () => {
 
         {showDelModal && <DeleteModal setOpenModal={setShowDelModal} />}
       </div>
+
+      <div className="mt-24"></div>
     </div>
   )
 }
