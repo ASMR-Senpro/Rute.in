@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Admin() {
+export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
