@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import Landing from "./pages/Landing.js"
 import Recommen from "./pages/Recommen.js"
 import AdminDashb from "./pages/DashboardAdmin.js"
+import About from "./pages/About.js"
 import Test from "./pages/Test.js"
 
 function App() {
@@ -20,6 +21,11 @@ function App() {
           path="/dasboardadmin"
           caseSensitive={false}
           element={<AdminDashb />}
+        />
+        <Route
+          path="/about"
+          caseSensitive={false}
+          element={<About />}
         />
       </Routes>
     </Router>
