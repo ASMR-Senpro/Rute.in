@@ -3,7 +3,7 @@ const db = require(('../database/client'));
 
 const {DataTypes} = Sequelize;
 
-const plans = db.define('users',{
+const plans = db.define('plans',{
     userID:{
         type: DataTypes.STRING
     },
@@ -11,7 +11,7 @@ const plans = db.define('users',{
         type: DataTypes.STRING
     },
     destinationID:{
-        types: DataTypes.ARRAY(DataTypes.INT)
+        type: DataTypes.ARRAY(DataTypes.INT)
     }
 },{
     freezeTableName: true

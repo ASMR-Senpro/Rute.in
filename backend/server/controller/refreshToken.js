@@ -1,4 +1,4 @@
-const users = require('../model/userModel')
+const users = require('../model/user')
 const jwt = require('jsonwebtoken')
 
 exports.refreshToken = async(req, res) => {
