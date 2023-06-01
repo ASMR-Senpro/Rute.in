@@ -11,7 +11,7 @@ export const useSearch=(data)=>{
         if(searchTerm!==""){
             console.log(data)
             const newDataList = data.filter((item)=>{
-                return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+                return item.Place_Name.toLowerCase().includes(searchTerm.toLowerCase());
             });
             setSearchResult(newDataList)
             console.log(newDataList)

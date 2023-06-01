@@ -68,7 +68,7 @@ export default function Navbar() {
                 <Link to="/">Artikel</Link>
               </li>
               <li className="">
-                <Link to="/">Tentang Kami</Link>
+                <Link to="/">Tentang</Link>
               </li>
             </ul>
           </div>

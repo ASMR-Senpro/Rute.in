@@ -44,7 +44,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
     try {
-        const destinations = await destiantion.findAll({})
+        const destinations = await destination.findAll({})
         res.status(200).json({
             success: true,
             message: 'Destination loaded',

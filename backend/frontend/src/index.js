@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import DisplayContextProvider from './context/DisplayContext';
+import AuthContextProvider from './context/AuthContext';
+import DestinationContextProvider from './context/DestinationContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <DisplayContextProvider>
+      <AuthContextProvider>
+        <DestinationContextProvider>
+          <App />
+        </DestinationContextProvider>
+      </AuthContextProvider>
+    </DisplayContextProvider>
+
   </React.StrictMode>
 );
 
