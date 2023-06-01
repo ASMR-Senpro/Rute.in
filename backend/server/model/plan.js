@@ -11,7 +11,7 @@ const plans = db.define('plans',{
         type: DataTypes.STRING
     },
     destinationID:{
-        type: DataTypes.ARRAY(DataTypes.INT)
+        type: DataTypes.ARRAY(DataTypes.INTEGER)
     }
 },{
     freezeTableName: true
