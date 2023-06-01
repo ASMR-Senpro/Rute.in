@@ -7,6 +7,7 @@ const db = require('./server/database/client');
 const userRouter = require('./server/router/user');
 const planRouter = require('./server/router/plan');
 const destRouter = require('./server/router/destination');
+const packRouter = require('./server/router/package');
 
 dotenv.config({ path:"config.env"})
 const app = express();
@@ -32,6 +33,7 @@ app.use(express.json());
 app.use('/api/mapping', userRouter);
 app.use('/api/category', planRouter);
 app.use('/api/users', destRouter);
+app.use('/api/package', packRouter);
 
 app.listen(3100, ()=>{
     console.log('Server is running')
