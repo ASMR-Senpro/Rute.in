@@ -4,29 +4,43 @@ const db = require('../database/client');
 const { DataTypes } = Sequelize;
 
 const destinations = db.define('destiantions', {
-    name: {
+    Place_Name: {
         type: DataTypes.STRING
     },
-    coordinat: {
-        type: DataTypes.ARRAY(DataTypes.FLOAT)
-    },
-    location: {
-        type: DataTypes.STRING
-    },
-    description: {
+    Description: {
         type: DataTypes.TEXT
     },
-    imageURL: {
-        type: DataTypes.ARRAY(DataTypes.STRING)
+    Category: {
+        type: DataTypes.TEXT
     },
-    price: {
+    City: {
+        type: DataTypes.STRING
+    },
+    Price: {
         type: DataTypes.INTEGER
     },
-    rating: {
+    Rating: {
         type: DataTypes.FLOAT
-    }
+    },
+    Time_Minutes: {
+        type: DataTypes.INTEGER
+    },
+    Coordinate: {
+        type: DataTypes.ARRAY(DataTypes.STRING)
+    },
+    Lat: {
+        type: DataTypes.FLOAT
+    },
+    Long: {
+        type: DataTypes.FLOAT
+    },
+    ImageURL: {
+        type: DataTypes.ARRAY(DataTypes.STRING)
+    },
+    
 }, {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
 })
 
 module.exports = destinations;
