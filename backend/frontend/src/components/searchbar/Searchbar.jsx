@@ -10,7 +10,7 @@ export default function SearchBar() {
   return (
     <div className="flex justify-center w-full">
       <form className="w-[1200px]">
-        <div className="h-[80px] flex bg-orange-700 p-1 rounded-md">
+        <div className="h-[60px] flex bg-orange-700 p-1 rounded-md">
           <button
             style={{ width: "342px" }}
             onClick={toggleDropdown}
