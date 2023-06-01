@@ -25,14 +25,14 @@ connection()
 
 
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cors({credentials:true, origin:'http://localhost:3000'}))
+app.use(cors({credentials:true, origin:'http://localhost:3001'}))
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(express.json());
 
-app.use('/api/mapping', userRouter);
-app.use('/api/category', planRouter);
-app.use('/api/users', destRouter);
+app.use('/api/users', userRouter);
+app.use('/api/plans', planRouter);
+app.use('/api/destinations', destRouter);
 app.use('/api/package', packRouter);
 
 app.listen(3100, ()=>{
