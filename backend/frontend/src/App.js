@@ -5,11 +5,15 @@ import Recommen from "./pages/Recommen.js"
 import AdminDashb from "./pages/DashboardAdmin.js"
 import About from "./pages/About.js"
 import Test from "./pages/Test.js"
+import Signup from "./pages/Signup.js"
+import Login from "./pages/Login.js"
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/signup" caseSensitive={false} element={<Signup  />} />
+        <Route path="/login" caseSensitive={false} element={<Login  />}/>
         <Route path="/" caseSensitive={false} element={<Landing />} />
         <Route path="/test" caseSensitive={false} element={<Test />} />
         <Route

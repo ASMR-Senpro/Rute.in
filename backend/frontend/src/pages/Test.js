@@ -8,6 +8,7 @@ import DeleteModal from "../components/modal/DeleteModal"
 import Navbar from "../components/navbar/Navbar"
 import RecommenBar from "../components/recommen/RecommenBar"
 
+
 const Test = () => {
   const [showDelModal, setShowDelModal] = useState(false)
 
@@ -59,6 +60,9 @@ const Test = () => {
           {showDelModal && <DeleteModal setOpenModal={setShowDelModal} />}
         </div>
       </div>
+      
+      
+      
 
       <div className="mt-24"></div>
     </div>
