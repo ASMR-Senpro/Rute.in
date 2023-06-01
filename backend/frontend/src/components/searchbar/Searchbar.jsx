@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useState } from "react"
 export default function SearchBar({ term, getSearchTerm, inputEl }) {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -111,4 +110,5 @@ export default function SearchBar({ term, getSearchTerm, inputEl }) {
             </form>
         </div>
     );
+
 }
