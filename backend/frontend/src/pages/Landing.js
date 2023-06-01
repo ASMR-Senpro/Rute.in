@@ -16,14 +16,17 @@ const Landing = () => {
         </div> */}
         <div
           id="title"
-          className="flex flex-col justify-center items-center text-h-xl font-bold py-16"
+          className="flex flex-col justify-center items-center text-h-lg font-bold py-16"
         >
           <h1>Bingung mau wisata ke mana?</h1>
           <h1>
             di <span className="text-orange-700">Rute.in</span> aja
           </h1>
         </div>
-        <div id="searchbar" className="h-full">
+        <div
+          id="searchbar"
+          className="flex flex-col justify-center items-center mx-auto w-10/12 h-full"
+        >
           <SearchBar />
         </div>
         <div

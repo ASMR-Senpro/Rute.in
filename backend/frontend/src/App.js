@@ -5,6 +5,7 @@ import Landing from "./pages/Landing.js"
 import Recommen from "./pages/Recommen.js"
 import AdminDashb from "./pages/DashboardAdmin.js"
 import About from "./pages/About.js"
+import Article from "./pages/Article.js"
 import Test from "./pages/Test.js"
 import Signup from "./pages/Signup.js"
 import Login from "./pages/Login.js"
@@ -31,6 +32,11 @@ function App() {
           path="/about"
           caseSensitive={false}
           element={<About />}
+        />
+        <Route
+          path="/article"
+          caseSensitive={false}
+          element={<Article />}
         />
       </Routes>
     </Router>
