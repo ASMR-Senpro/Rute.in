@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 function EditForm() {
   const [isOpen, setIsOpen] = useState(false);
+  
   const [formData, setFormData] = useState({
     name: '',
     location: '',
@@ -15,6 +16,8 @@ function EditForm() {
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+  
+
 
   const handleChange = (e, index) => {
     if (e.target.name === 'image') {
@@ -61,22 +64,14 @@ function EditForm() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <button
-        className="justify-center flex flex-row h-10 w-52 bg-orange-700 text-white shadow-md rounded-2xl flex justify-center items-center text-b-xl"
-        //<Icon icon="ic:baseline-plus" className="text-white text-h-lg text-neutral-100"></Icon>
-        onClick={toggleModal}
-      >
-        + Input Wisata
-      </button>
+    <div className="">
+        <button
+          className="fixed inset-0  flex items-center justify-center z-10"
+          onClick={toggleModal}
+        ></button>
 
-      {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10"
-            onClick={toggleModal}
-          ></div>
-          <div className="fixed inset-0 flex items-center justify-center z-20">
+        {isOpen && (
+        <div className="fixed inset-0 flex bg-black bg-opacity-40 items-center justify-center z-20">
             <div className="bg-white rounded-lg p-8 max-w-md h-96 overflow-y-auto">
               <h2 className="text-4xl mb-4 font-bold text-center text-beige-700">Masukkan destinasi wisata</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -183,9 +178,8 @@ function EditForm() {
                 </div>
               </form>
             </div>
-          </div>
-        </>
-      )}
+        </div>
+        )}
     </div>
   );
 }

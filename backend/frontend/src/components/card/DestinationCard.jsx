@@ -1,9 +1,12 @@
 import { Icon } from "@iconify/react"
 import React, { useState } from "react"
 import DeleteModal from "../modal/DeleteModal.jsx"
+import EditForm from "../modal/EditForm.jsx"
 
 export default function Admin({ name, location, imageURL }) {
   const [showDelModal, setShowDelModal] = useState(false)
+  const [showUpdateModal, setShowUpdateModal] = useState(false)
+  
 
   return (
     <div class="justify-center flex flex-row space-x-2 bg-transparent h-48">
@@ -26,10 +29,22 @@ export default function Admin({ name, location, imageURL }) {
           style={{ width: "1000px" }}
         >
           <div class="justify-end flex flex-row">
-            <Icon
+            {/* update button */}
+            <div id="btn__update">
+            <button
+              type="button"
+              onClick={() => {
+                setShowUpdateModal(true)
+              }}>
+              <Icon
               icon="mi:edit-alt"
               className="text-h-lg text-neutral-100"
             ></Icon>
+            </button>
+            {showUpdateModal && <EditForm setOpenModal={setShowUpdateModal} />}
+            </div>
+            {/* delete button */}
+            <div id="btn__delete">
             <button
               type="button"
               onClick={() => {
@@ -42,6 +57,7 @@ export default function Admin({ name, location, imageURL }) {
               ></Icon>
             </button>
             {showDelModal && <DeleteModal setOpenModal={setShowDelModal} />}
+            </div>
           </div>
           <h5 class="mb-2 text-h-lg font-bold tracking-tight text-neutral-50 dark:text-white">
             {name}
