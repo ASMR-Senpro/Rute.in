@@ -9,8 +9,14 @@ import Article from "./pages/Article.js"
 import Test from "./pages/Test.js"
 import Signup from "./pages/Signup.js"
 import Login from "./pages/Login.js"
+import Destination from "./pages/Destination.js"
+
+import {useAuthContext} from './hooks/auth/useAuthContext.js'
+
 
 function App() {
+  const {user} = useAuthContext
+
   return (
     <Router>
       <Routes>
@@ -27,6 +33,11 @@ function App() {
           path="/dasboardadmin"
           caseSensitive={false}
           element={<AdminDashb />}
+        />
+        <Route
+          path="/destination"
+          caseSensitive={false}
+          element={<Destination />}
         />
         <Route
           path="/about"

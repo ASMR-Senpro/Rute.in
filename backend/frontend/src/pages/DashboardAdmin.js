@@ -23,6 +23,7 @@ const DashboardAdmin = () => {
 	console.log(destinations)
 
 	const { searchResult, getSearchTerm, searchEl, searchTerm } = useSearch(destinations)
+	const destList = searchTerm<1 ? destinations : searchResult
 
 	return (
 		<div className="min-h-screen flex flex-col justify-between">
@@ -44,8 +45,8 @@ const DashboardAdmin = () => {
 					</div>
 				</div>
 				<div className="flex flex-col gap-4 justify-center items-center">
-					{destinations
-						? searchResult.map((destination) => (
+					{destList
+						? destList.map((destination) => (
 							<DestinationCard
 								destination={destination}
 							/>

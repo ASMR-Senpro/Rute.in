@@ -15,9 +15,13 @@ const users = db.define('users',{
     },
     resfresh_token:{
         type: DataTypes.TEXT
+    },
+    role:{
+        type: DataTypes.STRING
     }
 },{
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
 })
 
 module.exports = users;
