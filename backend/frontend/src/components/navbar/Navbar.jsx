@@ -62,13 +62,10 @@ export default function Navbar() {
                 <Link to="/">Home</Link>
               </li>
               <li className="">
-                <Link to="/">Destinasi</Link>
+                <Link to="/destinasi">Destinasi</Link>
               </li>
               <li className="">
-                <Link to="/">Artikel</Link>
-              </li>
-              <li className="">
-                <Link to="/">Tentang</Link>
+                <Link to="/about">Tentang</Link>
               </li>
             </ul>
           </div>
