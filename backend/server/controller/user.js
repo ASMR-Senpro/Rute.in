@@ -8,14 +8,16 @@ exports.signUp = async (req, res) => {
     if (!req.body) {
         res.status(404).json({ message: 'Data cannot be empty' })
     }
-    const { username, password } = req.body
+    const { name, username, password } = req.body
 
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt)
     try {
         await user.create({
-            name: username,
-            password: hashPassword
+            name: name,
+            username: username,
+            password: hashPassword,
+            role: "CLIENT"
         });
         res.status(200).json({ message: 'New user added' })
     } catch (error) {
@@ -30,14 +32,15 @@ exports.signIn = async (req, res) => {
     try {
         const userAuth = await user.findAll({
             where: {
-                usernamename: req.body.username
+                username: req.body.username
             }
         });
-        const match = await bcrypt.compare(req.body.password, user[0].password)
+        const match = await bcrypt.compare(req.body.password, userAuth[0].password)
         if (match) {
             const id = userAuth[0].id
-            const username = userAuth[0].name
-            console.log(process.env.ACCESS_TOKEN_SECRET)
+            const name =  userAuth[0].name
+            const username =  userAuth[0].username
+            const role =  userAuth[0].role
             const token = jwt.sign({ id, username }, process.env.ACCESS_TOKEN_SECRET, {
                 expiresIn: '20s'
             })
@@ -58,7 +61,9 @@ exports.signIn = async (req, res) => {
                 statusCode: res.statusCode,
                 message: "Login succesfully",
                 data: {
+                    name,
                     username,
+                    role,
                     token,
                     id
                 }

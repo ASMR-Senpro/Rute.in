@@ -1,6 +1,6 @@
 import React from "react"
-import Navbar from "../components/navbar/Navbar"
-import RecommenBar from "../components/recommen/RecommenBar"
+import Navbar from "../../components/navbar/Navbar"
+import RecommenBar from "../../components/recommen/RecommenBar"
 
 const Recommen = () => {
   const paketRecom = [

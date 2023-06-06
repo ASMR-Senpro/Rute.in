@@ -1,17 +1,24 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
+import '../../App.css'
+
 import RuteinLogo from "../logo/RuteinLogo"
 import LoginBtn from "../button/LoginBtn"
 import Sidebar from "./Sidebar"
 import Backdrop from "./Backdrop"
+import { useAuthContext } from "../../hooks/auth/useAuthContext"
+import { useLogout } from "../../hooks/auth/useLogout"
 
 export default function Navbar() {
+  const { user } = useAuthContext();
   const [sidebar, setSidebar] = useState(false)
 
   const toggleSidebar = () => {
     setSidebar((prevState) => !prevState)
   }
+
+  const { logout } = useLogout();
 
   return (
     <nav className="w-full top-0 fixed z-[9999]">
@@ -57,22 +64,59 @@ export default function Navbar() {
           <div
             className={`lg:basis-2/6 text-neutral-900 font-medium flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 hidden`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <li className="">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="">
-                <Link to="/destination">Destinasi</Link>
-              </li>
-              <li className="">
-                <Link to="/about">Tentang</Link>
-              </li>
-            </ul>
+            {user !== null && user.role == "ADMIN" ?
+              <>
+                <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+                  <li className="">
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li className="">
+                    <Link to="/destination">Destinasi</Link>
+                  </li>
+                  <li className="">
+                    <Link to="/plan">Plan</Link>
+                  </li>
+                  <li className="">
+                    <Link to="/user">User</Link>
+                  </li>
+                </ul>
+              </>
+              :
+              <>
+                <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+                  <li className="">
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li className="">
+                    <Link to="/destination">Destinasi</Link>
+                  </li>
+                  <li className="">
+                    <Link to="/about">Tentang</Link>
+                  </li>
+                </ul>
+              </>
+            }
           </div>
 
           {/* flex basis 3 - login button*/}
           <div className="basis-1/3 lg:basis-1/6 flex justify-end">
-            <LoginBtn />
+            {user == null ?
+              <LoginBtn />
+              :
+              <li className="dropdown3 cursor-pointer flex flex-row items-center">
+                <p>User</p>
+                <ul class="dropdown-menu3 absolute top-10 hidden pt-1 text-sm">
+                  <li class=""><Link class="text-white bg-cyan-700 hover:text-orange py-2 px-4 block whitespace-no-wrap" to="/profil">Profil</Link></li>
+                  <li class="">
+                    <p
+                      onClick={logout}
+                      class="text-red-500 bg-cyan-700 hover:text-orange py-2 px-4 block whitespace-no-wrap">
+                      Logout
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            }
           </div>
         </div>
       </div>

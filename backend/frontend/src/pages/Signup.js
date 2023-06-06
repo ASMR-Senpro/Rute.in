@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import IconAuth from "./IconAuth.png";
 
 const Signup = () => {
@@ -13,10 +14,10 @@ const Signup = () => {
 						<form>
 							<div class="mt-8 relative z-0 w-full mb-6 group">
 								<input
-									type="email"
+									type="text"
 									name="floating_email"
 									id="floating_email"
-									class="border border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+									class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 									placeholder=" "
 									required
 								/>
@@ -31,7 +32,7 @@ const Signup = () => {
 									type="password"
 									name="floating_password"
 									id="floating_password"
-									class="border border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+									class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 									placeholder=" "
 									required
 								/>
@@ -46,7 +47,7 @@ const Signup = () => {
 									type="password"
 									name="repeat_password"
 									id="floating_repeat_password"
-									class="border border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+									class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 									placeholder=" "
 									required
 								/>
@@ -62,7 +63,7 @@ const Signup = () => {
 										type="text"
 										name="floating_first_name"
 										id="floating_first_name"
-										class="border border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+										class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 										placeholder=" "
 										required
 									/>
@@ -77,7 +78,7 @@ const Signup = () => {
 										type="text"
 										name="floating_last_name"
 										id="floating_last_name"
-										class="border border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+										class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 										placeholder=" "
 										required
 									/>
@@ -95,7 +96,7 @@ const Signup = () => {
 										pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 										name="floating_city"
 										id="floating_city"
-										class="border border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+										class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 										placeholder=" "
 										required
 									/>
@@ -110,7 +111,7 @@ const Signup = () => {
 										type="text"
 										name="floating_birthdate"
 										id="floating_birthdate"
-										class="border border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+										class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 										placeholder=" "
 										required
 									/>
@@ -131,8 +132,10 @@ const Signup = () => {
 						</form>
 					</div>
 					<div className="bg-gradient-to-r from-cyan-500 to-cyan-700 p-4 h-[80vh] rounded-sm">
-						<div className="text-white text-right text-[32px] pt-4 pr-6 font-bold">
-							<h1>RUTE.IN</h1>
+						<div className="text-white text-right text-[32px] pt-4 pr-6 font-bold cursor-pointer">
+							<Link to="/">
+								<h1>RUTE.IN</h1>
+							</Link>
 						</div>
 						<div>
 							<div className="rounded-xl w-9/12 h-9/12 m-auto">

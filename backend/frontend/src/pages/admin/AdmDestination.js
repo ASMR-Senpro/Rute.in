@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
 import { useRef, useState } from "react";
 
-import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/footer/Footer";
-import DestinationCard from "../components/card/DestinationCard";
-import Search from "../components/searchbar/AdminSearch";
-import InputForm from "../components/modal/InputForm";
+import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
+import DestinationCard from "../../components/card/DestinationCard";
+import Search from "../../components/searchbar/AdminSearch";
+import InputForm from "../../components/modal/InputForm";
 
-import { useDestinationContext } from "../hooks/useDestinationContext";
-import useFetch from "../hooks/useFetch"
-import { useDisplayContext } from "../hooks/useDisplayContext";
+import { useDestinationContext } from "../../hooks/useDestinationContext";
+import useFetch from "../../hooks/useFetch"
+import { useDisplayContext } from "../../hooks/useDisplayContext";
 
-import { useSearch } from "../hooks/useSearch";
+import { useSearch } from "../../hooks/useSearch";
 
 
-const DashboardAdmin = () => {
+const AdmDestination = () => {
 	const { notify, isPending, error, setLoading, setError } = useDisplayContext();
 	const { destinations, dispatch } = useDestinationContext();
 
@@ -63,4 +63,4 @@ const DashboardAdmin = () => {
 	);
 };
 
-export default DashboardAdmin;
+export default AdmDestination;

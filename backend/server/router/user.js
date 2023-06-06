@@ -7,7 +7,7 @@ const {refreshToken} = require('../controller/refreshToken')
 //user router
 route.get('/', verifyToken)
 route.post('/', userController.signUp)
-route.get('/signin', userController.signIn)
+route.post('/signin', userController.signIn)
 route.get('/token', refreshToken)
 route.get('/:id', userController.getByID)
 route.put('/:id', userController.edit)

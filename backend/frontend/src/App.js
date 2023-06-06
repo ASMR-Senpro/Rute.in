@@ -1,56 +1,42 @@
-import React from "react"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-import Landing from "./pages/Landing.js"
-import Recommen from "./pages/Recommen.js"
-import AdminDashb from "./pages/DashboardAdmin.js"
-import About from "./pages/About.js"
-import Article from "./pages/Article.js"
-import Test from "./pages/Test.js"
+import Landing from "./pages/client/Landing.js"
 import Signup from "./pages/Signup.js"
 import Login from "./pages/Login.js"
-import Destination from "./pages/Destination.js"
 
-import {useAuthContext} from './hooks/auth/useAuthContext.js'
+import { useAuthContext } from './hooks/auth/useAuthContext.js'
+import LandingAdmin from "./pages/admin/AdminLanding.js"
 
 
 function App() {
-  const {user} = useAuthContext
+  const { user, dispatch} = useAuthContext();
+  const [isLoading, setIsLoading] = useState();
+  useEffect(()=>{
+    const logged = localStorage.getItem('user');
+    dispatch({type:'LOGIN', payload:logged});
+    setIsLoading(false)
+  }, [])
+  console.log(user)
 
   return (
-    <Router>
+    <>
+      <BrowserRouter>
       <Routes>
-        <Route path="/signup" caseSensitive={false} element={<Signup  />} />
-        <Route path="/login" caseSensitive={false} element={<Login  />}/>
-        <Route path="/" caseSensitive={false} element={<Landing />} />
-        <Route path="/test" caseSensitive={false} element={<Test />} />
-        <Route
-          path="/recommendation"
-          caseSensitive={false}
-          element={<Recommen />}
-        />
-        <Route
-          path="/dasboardadmin"
-          caseSensitive={false}
-          element={<AdminDashb />}
-        />
-        <Route
-          path="/destination"
-          caseSensitive={false}
-          element={<Destination />}
-        />
-        <Route
-          path="/about"
-          caseSensitive={false}
-          element={<About />}
-        />
-        <Route
-          path="/article"
-          caseSensitive={false}
-          element={<Article />}
-        />
+        {user !== null ?
+          <Route path="/*" caseSensitive={false}
+            element={user.role == "ADMIN" ? <LandingAdmin /> : <Landing />}
+          />
+          :
+          <>
+            <Route path="/signup" caseSensitive={false} element={<Signup />} />
+            <Route path="/login" caseSensitive={false} element={<Login />} />
+            <Route path="/*" caseSensitive={false} element={<Landing />} />
+          </>
+        }
       </Routes>
-    </Router>
+    </BrowserRouter>
+    </>
   )
 }
 

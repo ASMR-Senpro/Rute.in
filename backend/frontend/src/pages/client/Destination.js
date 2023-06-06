@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useDestinationContext } from "../hooks/useDestinationContext";
-import useFetch from "../hooks/useFetch";
-import { useDisplayContext } from "../hooks/useDisplayContext";
-import SearchBar from "../components/searchbar/Searchbar";
-import { useSearch } from "../hooks/useSearch";
-import Navbar from "../components/navbar/Navbar";
-import DestDisplay from "../components/card/DestinationDisplay";
-import Pagination from '../components/navbar/Pagination'
+import { useDestinationContext } from "../../hooks/useDestinationContext";
+import useFetch from "../../hooks/useFetch";
+import { useDisplayContext } from "../../hooks/useDisplayContext";
+import Search from "../../components/searchbar/AdminSearch";
+import { useSearch } from "../../hooks/useSearch";
+import Navbar from "../../components/navbar/Navbar";
+import DestDisplay from "../../components/card/DestinationDisplay";
+import Pagination from '../../components/navbar/Pagination'
 
 const Destination = () => {
     const { destinations, dispatch } = useDestinationContext();
@@ -15,7 +15,7 @@ const Destination = () => {
     useFetch({ url, dispatch, setError, setLoading, type: "GET_DESTINATION" });
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage] = useState(10);
+    const [postPerPage] = useState(8);
 
     const indexOfLastTask = currentPage * postPerPage;
     const indexOfFirstTask = indexOfLastTask - postPerPage;
@@ -34,7 +34,7 @@ const Destination = () => {
                 <main className="flex flex-col gap-4 py-24 w-full">
                     <div className="top-16 sticky flex flex-col justify-end z-20 bg-white gap-4 py-4">
                         <div className="flex justify-center w-full">
-                            <SearchBar
+                            <Search
                                 inputEl={searchEl}
                                 searchTerm={(searchTerm)}
                                 getSearchTerm={getSearchTerm}
