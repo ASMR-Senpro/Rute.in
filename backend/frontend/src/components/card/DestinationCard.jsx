@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react"
 import React, { useState } from "react"
 import DeleteModal from "../modal/DeleteModal.jsx"
+import { Link, useParams } from "react-router-dom"
 
 export default function Admin({ destination }) {
   const [showDelModal, setShowDelModal] = useState(false)
@@ -54,12 +55,10 @@ export default function Admin({ destination }) {
           <p class="mb-3 text-b-xl font-normal text-neutral-100 dark:text-gray-400">
             {destination.City}
           </p>
-          <a
-            href="#"
+          <Link
+            to="/article"
             class="text-right text-b-sm mb-3 font-normal text-neutral-50 dark:text-gray-400"
-          >
-            ...klik untuk detail
-          </a>
+            >...klik untuk detail</Link>
         </div>
       </div>
     </div>
