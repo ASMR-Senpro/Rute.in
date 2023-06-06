@@ -28,6 +28,18 @@
   color: #61dafb;
 }
 
+.dropdown1:hover .dropdown-menu1 {
+  display: block;
+}
+
+.dropdown2:hover .dropdown-menu2 {
+  display: block;
+}
+
+.dropdown3:hover .dropdown-menu3 {
+  display: block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

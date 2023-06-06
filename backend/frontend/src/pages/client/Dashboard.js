@@ -1,12 +1,12 @@
 import React from "react"
 import { Icon } from "@iconify/react"
-import Navbar from "../components/navbar/Navbar"
-import SearchBar from "../components/searchbar/Searchbar"
-import TouristImg from "../assets/images/tourist.png"
-import Carousel from "../components/carousel/Carousel"
-import Footer from "../components/footer/Footer"
+import Navbar from "../../components/navbar/Navbar"
+import SearchBar from "../../components/searchbar/Searchbar"
+import TouristImg from "../../assets/images/tourist.png"
+import Carousel from "../../components/carousel/Carousel"
+import Footer from "../../components/footer/Footer"
 
-const Landing = () => {
+const Dashboard = () => {
   return (
     <div className="flex flex-col items-center justify-between">
       <Navbar />
@@ -64,4 +64,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default Dashboard

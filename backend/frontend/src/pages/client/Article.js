@@ -1,8 +1,8 @@
 import React from "react"
-import Navbar from "../components/navbar/Navbar"
-import Footer from "../components/footer/Footer"
-import MapImg from "../assets/images/map.png"
-import ReviewCard from "../components/card/ReviewCard"
+import Navbar from "../../components/navbar/Navbar"
+import Footer from "../../components/footer/Footer"
+import MapImg from "../../assets/images/map.png"
+import ReviewCard from "../../components/card/ReviewCard"
 
 const Article = () => {
     return (
