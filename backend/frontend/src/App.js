@@ -10,11 +10,13 @@ import LandingAdmin from "./pages/admin/AdminLanding.js"
 
 
 function App() {
+  const [jsonData, setJsonData] = useState({})
   const { user, dispatch} = useAuthContext();
   const [isLoading, setIsLoading] = useState();
   useEffect(()=>{
     const logged = localStorage.getItem('user');
-    dispatch({type:'LOGIN', payload:logged});
+    const parsedData = JSON.parse(logged)
+    dispatch({type:'LOGIN', payload:parsedData});
     setIsLoading(false)
   }, [])
   console.log(user)

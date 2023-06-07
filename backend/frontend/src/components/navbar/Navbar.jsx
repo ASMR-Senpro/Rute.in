@@ -12,6 +12,7 @@ import { useLogout } from "../../hooks/auth/useLogout"
 
 export default function Navbar() {
   const { user } = useAuthContext();
+  const [username, setUsername] = useState(user !== null ? user.username : "")
   const [sidebar, setSidebar] = useState(false)
 
   const toggleSidebar = () => {
@@ -104,7 +105,7 @@ export default function Navbar() {
               <LoginBtn />
               :
               <li className="dropdown3 cursor-pointer flex flex-row items-center">
-                <p>User</p>
+                <p className="text-white bg-cyan-700 px-4 py-2 rounded-sm" >{username}</p>
                 <ul class="dropdown-menu3 absolute top-10 hidden pt-1 text-sm">
                   <li class=""><Link class="text-white bg-cyan-700 hover:text-orange py-2 px-4 block whitespace-no-wrap" to="/profil">Profil</Link></li>
                   <li class="">

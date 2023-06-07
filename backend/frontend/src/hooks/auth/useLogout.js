@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogout = () => {
@@ -8,6 +9,7 @@ export const useLogout = () => {
         localStorage.removeItem('user');
 
         authDispatch({ type: 'LOGOUT' });
+        window.location.reload();
     }
 
     return { logout };

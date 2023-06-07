@@ -4,6 +4,9 @@ const db = require(('../database/client'));
 const {DataTypes} = Sequelize;
 
 const users = db.define('users',{
+    email:{
+        type: DataTypes.STRING
+    },
     name:{
         type: DataTypes.STRING
     },
@@ -11,6 +14,15 @@ const users = db.define('users',{
         type: DataTypes.STRING
     },
     password:{
+        type: DataTypes.STRING
+    },
+    province:{
+        type: DataTypes.STRING
+    },
+    city:{
+        type: DataTypes.STRING
+    },
+    birth:{
         type: DataTypes.STRING
     },
     resfresh_token:{
