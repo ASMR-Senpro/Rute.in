@@ -77,9 +77,6 @@ export default function Navbar() {
                   <li className="">
                     <Link to="/plan">Plan</Link>
                   </li>
-                  <li className="">
-                    <Link to="/user">User</Link>
-                  </li>
                 </ul>
               </>
               :

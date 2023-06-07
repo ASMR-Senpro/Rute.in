@@ -10,8 +10,10 @@ exports.create = async (req, res) => {
 
     try {
         const { Place_Name, Description, Category, City, Coordinate, ImageURL } = req.body
+        console.log(Place_Name)
+        console.log(Coordinate)
 
-        const resImage = await cloudinary.uploader.upload(ImageURL[index], {
+        const resImage = await cloudinary.uploader.upload(ImageURL, {
             folder: 'MappingDIY',
             width: 960,
             crop: "scale"
@@ -22,7 +24,7 @@ exports.create = async (req, res) => {
             Description: Description,
             Category: Category,
             City: City,
-            Coordinate: Coordinate,
+            Coordinate: JSON.stringify(Coordinate),
             ImageURL: resImage.secure_url
         })
         res.status(200).json({
@@ -35,6 +37,7 @@ exports.create = async (req, res) => {
         res.status(400).json({
             message: error
         })
+        console.log(error)
     }
 }
 
