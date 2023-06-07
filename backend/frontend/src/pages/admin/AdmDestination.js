@@ -20,7 +20,6 @@ const AdmDestination = () => {
 
 	const url = "http://localhost:3100/api/destinations/"
 	useFetch({ url, dispatch, setError, setLoading, type: "GET_DESTINATION" });
-	console.log(destinations)
 
 	const { searchResult, getSearchTerm, searchEl, searchTerm } = useSearch(destinations)
 	const destList = searchTerm<1 ? destinations : searchResult
@@ -40,7 +39,7 @@ const AdmDestination = () => {
 							getSearchTerm={getSearchTerm}
 						/>
 					</div>
-					<div className="flex justify-between mx-36">
+					<div className="flex justify-center mx-36">
 						<InputForm />
 					</div>
 				</div>
