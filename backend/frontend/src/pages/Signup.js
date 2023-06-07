@@ -5,9 +5,33 @@ import { useEffect, useState } from "react";
 import { useSignUp } from "../hooks/auth/useSignUp";
 import { usePasswordValidation } from "../hooks/auth/usePasswordValidation";
 import axios from 'axios';
+import ProvinceOption from '../components/register/ProvinceOption'
 
 const Signup = () => {
-	const [provData, setProvData] = useState({})
+	const [email, setEmail] = useState("")
+	const [username, setUsername] = useState("")
+	const [firstName, setFirstName] = useState("")
+	const [lastName, setLastname] = useState("")
+	const [province, setProvince] = useState("")
+	const [city, setCity] = useState("")
+	const [birth, setBirth] = useState(new Date())
+	console.log(province)
+
+	const [cityData, setCityData] = useState([])
+	const fetchCity = async () => {
+		try {
+			const prov = JSON.parse(province)
+			const id = prov.id
+			const urlCity = 'https://adityar22.github.io/api-wilayah-indonesia/api/regencies/' + id + '.json'
+			const response = await axios.get(urlCity);
+			setCityData(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	console.log(cityData)
+
+	const [provData, setProvData] = useState([])
 	const fetchData = async () => {
 		try {
 			const response = await axios.get('https://adityar22.github.io/api-wilayah-indonesia/api/provinces.json');
@@ -16,19 +40,15 @@ const Signup = () => {
 			console.log(error);
 		}
 	};
+	console.log(provData)
+
 	useEffect(() => {
 		fetchData();
 	}, []);
-	console.log(provData)
 
-
-	const [email, setEmail] = useState("")
-	const [username, setUsername] = useState("")
-	const [firstName, setFirstName] = useState("")
-	const [lastName, setLastname] = useState("")
-	const [province, setProvince] = useState("")
-	const [city, setCity] = useState("")
-	const [birth, setBirth] = useState(new Date())
+	useEffect(() => {
+		fetchCity();
+	}, [province])
 
 	const { passwordError, confirmPasswordError, passwordInput, handlePasswordChange, handleValidation } = usePasswordValidation();
 	const { signup, isPending, error } = useSignUp();
@@ -48,8 +68,8 @@ const Signup = () => {
 							Create Account
 						</div>
 
-						<form>
-							<div class="mt-8 relative z-0 w-full mb-6 group">
+						<form onSubmit={handleSubmit}>
+							<div class="mt-6 relative z-0 w-full mb-3 group">
 								<input
 									type="text"
 									name="floating_email"
@@ -66,7 +86,7 @@ const Signup = () => {
 									Email address
 								</label>
 							</div>
-							<div class="mt-8 relative z-0 w-full mb-6 group">
+							<div class="relative z-0 w-full mb-3 group">
 								<input
 									type="text"
 									name="floating_username"
@@ -83,26 +103,26 @@ const Signup = () => {
 									Username
 								</label>
 							</div>
-							<div class="relative z-0 w-full mb-6 group">
+							<div class="relative z-0 w-full mb-3 group">
 								<input
 									type="password"
-									name="floating_password"
-									id="floating_password"
+									name="password"
+									id="password"
 									class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-									placeholder=" "
 									required
 									onChange={handlePasswordChange}
 									onKeyUp={handleValidation}
 									value={passwordInput.password}
 								/>
 								<label
-									for="floating_password"
+									for="password"
 									class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
 									Password
 								</label>
+								{passwordError && <p className="text-sm text-red-400 mx-auto font-medium mt-2"> {passwordError}</p>}
 							</div>
 							<div class="grid md:grid-cols-2 md:gap-6">
-								<div class="relative z-0 w-full mb-6 group">
+								<div class="relative z-0 w-full mb-3 group">
 									<input
 										type="text"
 										name="floating_first_name"
@@ -119,7 +139,7 @@ const Signup = () => {
 										First name
 									</label>
 								</div>
-								<div class="relative z-0 w-full mb-6 group">
+								<div class="relative z-0 w-full mb-3 group">
 									<input
 										type="text"
 										name="floating_last_name"
@@ -137,19 +157,22 @@ const Signup = () => {
 									</label>
 								</div>
 							</div>
-							<div class="flex flex-wrap w-full">
-								<div class="relative z-0 mb-6 group w-full">
-									<input
-										type="tel"
+							<div class="flex flex-wrap gap-3">
+								<div class="relative z-0 mb-3 group w-full">
+									<select
 										pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 										name="floating_prov"
 										id="floating_prov"
-										class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+										class="w-full border-1 border-neutral-500 block py-2.5 px-0 text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 										placeholder=" "
 										required
 										value={province}
 										onChange={(e) => { setProvince(e.target.value) }}
-									/>
+									>
+										{provData?.map((prov, index) => {
+											return <ProvinceOption prov={prov} />
+										})}
+									</select>
 									<label
 										for="floating_prov"
 										class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
@@ -157,18 +180,21 @@ const Signup = () => {
 									</label>
 								</div>
 								{province !== "" &&
-									<div class="relative z-0 mb-6 group w-full">
-										<input
-											type="tel"
+									<div class="relative z-0 mb-3 group w-full">
+										<select
 											pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 											name="floating_city"
 											id="floating_city"
-											class="border-1 border-neutral-500 block py-2.5 px-0 w-full text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+											class="w-full border-1 border-neutral-500 block py-2.5 px-0  text-sm text-neutral-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 											placeholder=" "
 											required
 											value={city}
 											onChange={(e) => { setCity(e.target.value) }}
-										/>
+										>
+											{cityData?.map((city, index) => {
+												return <ProvinceOption prov={city} />
+											})}
+										</select>
 										<label
 											for="floating_city"
 											class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
@@ -177,7 +203,7 @@ const Signup = () => {
 									</div>
 								}
 							</div>
-							<div class="relative z-0 w-full mb-6 group">
+							<div class="relative z-0 w-full mb-3 group">
 								<input
 									type="date"
 									name="floating_birthdate"
@@ -196,7 +222,7 @@ const Signup = () => {
 							</div>
 							<div className="mt-4 text-center">
 								<button
-									type="signup"
+									type="submit"
 									class="text-white bg-cyan-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Sign Up
 								</button>

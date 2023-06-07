@@ -105,7 +105,7 @@ export default function Carousel() {
                 <Link to="">
                   <h4 className="text-h-sm font-semibold">{item.Place_Name}</h4>
                 </Link>
-                <h5 className="text-b-md text-sm">{item.Location}</h5>
+                <h5 className="text-b-md text-sm">{item.City}</h5>
               </div>
             </div>
           ))}

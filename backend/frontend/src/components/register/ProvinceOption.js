@@ -1,8 +1,8 @@
-const ProvinceOption = ({province}) => {
+const ProvinceOption = ({prov}) => {
     return ( 
         <>
-            <option key={room.name} value={JSON.stringify(province)} className="text-sm text-blue bg-white hover:bg-blue">
-                {province.name}
+            <option key={prov.id} value={JSON.stringify(prov)} className="text-sm text-blue bg-white text-neutral-700  hover:bg-cyan-500 hover:text-white">
+                {prov.name}
             </option>
         </>
      );

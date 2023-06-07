@@ -1,5 +1,25 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import axios from 'axios';
+import ProvinceOption from '../register/ProvinceOption'
+
 export default function SearchBar({ term, getSearchTerm, inputEl }) {
+    const [province, setProvince] = useState("")
+
+    const [provData, setProvData] = useState([])
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('https://adityar22.github.io/api-wilayah-indonesia/api/provinces.json');
+            setProvData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    console.log(provData)
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -10,29 +30,16 @@ export default function SearchBar({ term, getSearchTerm, inputEl }) {
         <div className="flex justify-center w-full">
             <form style={{ width: "1080px" }}>
                 <div className="flex bg-orange-700 p-1 rounded-md">
-                    <button
+                    <select
                         style={{ width: "342px" }}
-                        onClick={toggleDropdown}
-                        id="dropdown-button"
-                        data-dropdown-toggle="dropdownslist"
-                        className="flex-shrink-0 text-white z-10 inline-flex justify-center items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-l-lg dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-                        type="button"
+                        className="bg-orange-700 flex-shrink-0 text-white z-10 inline-flex justify-center items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-l-lg dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                        value={province}
+                        onChange={(e) => { setProvince(e.target.value) }}
                     >
-                        Pilih daerah
-                        <svg
-                            aria-hidden="true"
-                            className="w-4 h-4 ml-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                            ></path>
-                        </svg>
-                    </button>
+                        {provData?.map((prov, index) => {
+                            return <ProvinceOption prov={prov} />
+                        })}
+                    </select>
 
                     <div className="relative w-full">
                         <input
