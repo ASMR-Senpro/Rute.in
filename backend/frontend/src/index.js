@@ -7,6 +7,7 @@ import DisplayContextProvider from './context/DisplayContext';
 import AuthContextProvider from './context/AuthContext';
 import DestinationContextProvider from './context/DestinationContext';
 import PackageContextProvider from './context/PackagesContext'
+import RecommendContextProvider from './context/RecomendContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,9 +15,11 @@ root.render(
     <DisplayContextProvider>
       <AuthContextProvider>
         <DestinationContextProvider>
-          <PackageContextProvider>
-            <App />
-          </PackageContextProvider>
+          <RecommendContextProvider>
+            <PackageContextProvider>
+              <App />
+            </PackageContextProvider>
+          </RecommendContextProvider>
         </DestinationContextProvider>
       </AuthContextProvider>
     </DisplayContextProvider>

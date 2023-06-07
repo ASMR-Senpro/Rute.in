@@ -1,12 +1,44 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Icon } from "@iconify/react"
 import Navbar from "../../components/navbar/Navbar"
 import SearchBar from "../../components/searchbar/Searchbar"
 import TouristImg from "../../assets/images/tourist.png"
 import Carousel from "../../components/carousel/Carousel"
 import Footer from "../../components/footer/Footer"
+import axios from 'axios';
+import useFetch from "../../hooks/useFetch"
+import { useRecommendContext } from '../../hooks/destination/useRecommendContext'
+import { useDisplayContext } from "../../hooks/useDisplayContext";
+import { useHandleRecommend } from "../../hooks/destination/useHandleRecommend"
 
 const Dashboard = () => {
+  // const [user_id, setUser_ID] = useState(2)
+
+  // const { recommends, dispatch } = useRecommendContext();
+  // const { notify, isPending, error, setLoading, setError } = useDisplayContext();
+  // const url = "http://127.0.0.1:5000/recommend"
+
+  // const data = { user_id }
+  // const { handleAdd: handleSubmit } = useHandleRecommend({ url: url, type: 'GET_RECOMMEND', dispatch, data: data, setLoading, setError });
+  // useEffect(()=>{
+  //   handleSubmit()
+  // },[])
+  const sendData = async () => {
+    try {
+      const data = {
+        user_id: 87
+      };
+
+      const response = await axios.post('http://127.0.0.1:5000/recommend', data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+  	sendData();
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-between">
       <main className="mt-24 w-10/12 bg-white relative">
