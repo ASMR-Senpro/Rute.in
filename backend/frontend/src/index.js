@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import DisplayContextProvider from './context/DisplayContext';
 import AuthContextProvider from './context/AuthContext';
 import DestinationContextProvider from './context/DestinationContext';
+import PackageContextProvider from './context/PackagesContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <DisplayContextProvider>
       <AuthContextProvider>
         <DestinationContextProvider>
-          <App />
+          <PackageContextProvider>
+            <App />
+          </PackageContextProvider>
         </DestinationContextProvider>
       </AuthContextProvider>
     </DisplayContextProvider>
