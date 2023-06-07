@@ -5,7 +5,7 @@ export const useSignUp = () => {
     const { dispatch } = useAuthContext();
     const [isPending, setIsPending] = useState(null);
     const [error, setError] = useState("");
-    const url = '/api/user/signup';
+    const url = 'http://localhost:3100/api/users/';
 
     const signup = async (email, name, username, password, province, city, birth) => {
         setIsPending(true);

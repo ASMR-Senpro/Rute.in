@@ -1,70 +1,66 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import ProvinceOption from '../register/ProvinceOption';
 //import { Icon } from "@iconify/react"
+import { useHandleAdd } from '../../hooks/destination/useHandleAdd'
+import { useDestinationContext } from '../../hooks/useDestinationContext';
+import { useDisplayContext } from '../../hooks/useDisplayContext';
 
 
 function InputForm() {
+  const [provData, setProvData] = useState([])
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://adityar22.github.io/api-wilayah-indonesia/api/provinces.json');
+      setProvData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(provData)
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    location: '',
-    facilities: [''],
-    description: '',
-    image: null,
-  });
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleChange = (e, index) => {
-    if (e.target.name === 'image') {
-      setFormData({
-        ...formData,
-        image: e.target.files[0],
-      });
-    } else if (e.target.name === 'facilities') {
-      const updatedFacilities = [...formData.facilities];
-      updatedFacilities[index] = e.target.value;
-      setFormData({
-        ...formData,
-        facilities: updatedFacilities,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-      });
-    }
-  };
+  const {dispatch}= useDestinationContext();
+  const { notify, isPending, error, setLoading, setError } = useDisplayContext();
 
-  const handleAddFacility = () => {
-    setFormData({
-      ...formData,
-      facilities: [...formData.facilities, ''],
-    });
-  };
+  const [Place_Name, setPlace_Name] = useState("");
+  const [Description, setDescription] = useState("");
+  const [Category, setCategory] = useState("");
+  const [City, setCity] = useState("");
+  const [Coordinate, setCoordinate] = useState("")
+  const [ImageURL, setImageURL] = useState("")
 
-  const handleRemoveFacility = (index) => {
-    const updatedFacilities = [...formData.facilities];
-    updatedFacilities.splice(index, 1);
-    setFormData({
-      ...formData,
-      facilities: updatedFacilities,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleImage = (e) => {
+    e.stopPropagation()
+    const file = e.target.files[0];
+    setFileToBase(file)
+    e.target.files[0] = null;
     e.preventDefault();
-    // Lakukan sesuatu dengan data formulir
-    console.log(formData);
-    toggleModal(); // Menutup modal setelah pengiriman formulir
-  };
+  }
+  const setFileToBase = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageURL(reader.result);
+    }
+  }
+
+  const newDest = { Place_Name, Description, Category, City, Coordinate, ImageURL }
+  const { handleAdd: handleSubmit } = useHandleAdd({ url:'http://localhost:3100/api/destinations/', type: 'ADD_DESTINATION', dispatch, data: newDest, setLoading, setError, closeAddPopup: toggleModal });
 
   return (
     <div className="flex justify-center items-center">
       <button
-        className="justify-center flex flex-row h-10 w-52 bg-orange-700 text-white shadow-md rounded-2xl flex justify-center items-center text-b-xl"
-        //<Icon icon="ic:baseline-plus" className="text-white text-h-lg text-neutral-100"></Icon>
+        className="justify-center flex flex-row h-10 w-52 bg-orange-700 text-white shadow-md rounded-2xl items-center text-b-xl"
+        //<Icon icon="ic:baseline-plus" className="text-white text-h-lg"></Icon>
         onClick={toggleModal}
       >
         + Input Wisata
@@ -88,59 +84,39 @@ function InputForm() {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    value={Place_Name}
+                    onChange={(e) => { setPlace_Name(e.target.value) }}
+                    className="w-full border border-gray-300 px-3 py-2 rounded"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="name" className="block mb-1">
+                    Category:
+                  </label>
+                  <input
+                    type="text"
+                    id="category"
+                    name="category"
+                    value={Category}
+                    onChange={(e) => { setCategory(e.target.value) }}
                     className="w-full border border-gray-300 px-3 py-2 rounded"
                   />
                 </div>
                 <div>
                   <label htmlFor="location" className="block mb-1">
-                    Location:
+                    City:
                   </label>
                   <select
                     id="location"
                     name="location"
-                    value={formData.location}
-                    onChange={handleChange}
+                    value={City}
+                    onChange={(e) => { setCity(e.target.value) }}
                     className="w-full border border-gray-300 px-3 py-2 rounded"
                   >
-                    <option value="">Select Location</option>
-                    <option value="Location A">Location A</option>
-                    <option value="Location B">Location B</option>
-                    <option value="Location C">Location C</option>
+                    {provData?.map((prov, index) => {
+                      return <ProvinceOption prov={prov} />
+                    })}
                   </select>
-                </div>
-                <div>
-                  <label htmlFor="facilities" className="block mb-1">
-                    Facilities:
-                  </label>
-                  {formData.facilities.map((facility, index) => (
-                    <div key={index}>
-                    <input
-                      key={index}
-                      type="text"
-                      name="facilities"
-                      value={facility}
-                      onChange={(e) => handleChange(e, index)}
-                      className=" border border-gray-300 px-3 py-2 rounded mb-2"
-                    />
-                    <button
-                        type="button"
-                        className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => handleRemoveFacility(index)}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                  
-                  <button
-                    type="button"
-                    className="bg-cyan-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"
-                    onClick={handleAddFacility}
-                  >
-                    +
-                  </button>
                 </div>
                 <div>
                   <label htmlFor="description" className="block mb-1">
@@ -149,8 +125,8 @@ function InputForm() {
                   <textarea
                     id="description"
                     name="description"
-                    value={formData.description}
-                    onChange={handleChange}
+                    value={Description}
+                    onChange={(e) => { setDescription(e.target.value) }}
                     className="w-full border border-gray-300 px-3 py-2 rounded"
                   ></textarea>
                 </div>
@@ -163,7 +139,7 @@ function InputForm() {
                     id="image"
                     name="image"
                     accept="image/*"
-                    onChange={handleChange}
+
                     className="border border-gray-300 px-3 py-2 rounded"
                   />
                 </div>
@@ -175,7 +151,7 @@ function InputForm() {
                     Input
                   </button>
                   <button
-                    className=" ring-cyan-500 hover:bg-neutral-50 text-neutral-500 font py-2 px-4 flex-1 rounded-md outline-none border rounded"
+                    className=" ring-cyan-500 hover:bg-neutral-50 text-neutral-500 font py-2 px-4 flex-1 rounded-md outline-none border"
                     onClick={toggleModal}
                   >
                     Cancel

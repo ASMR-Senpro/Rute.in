@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard";
 import Destination from "./Destination";
 import About from "./About"
 import Article from "./Article"
+import Reccomen from "./Recommen"
 
 const Landing = () => {
   return (
@@ -17,6 +18,7 @@ const Landing = () => {
             <Route path="/destination" element={<Destination />} />
             <Route path="/about" element={<About />} />
             <Route path="/article" element={<Article />} />
+            <Route path="/reccomen" element={<Reccomen />} />
             <Route path='*' element={<Dashboard />} />
           </Routes>
         </div>

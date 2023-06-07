@@ -9,25 +9,21 @@ exports.create = async (req, res) => {
     }
 
     try {
-        const { name, coordinat, location, description, imageURL, price, rating } = req.body
+        const { Place_Name, Description, Category, City, Coordinate, ImageURL } = req.body
 
-        const imgURL = []
-        for (let index = 0; index < imageURL.length; index++) {
-            const resImage = await cloudinary.uploader.upload(imageURL[index], {
-                folder: 'MappingDIY',
-                width: 720,
-                crop: "scale"
-            })
-            imgURL[index] = resImage.secure_url
-        }
+        const resImage = await cloudinary.uploader.upload(ImageURL[index], {
+            folder: 'MappingDIY',
+            width: 960,
+            crop: "scale"
+        })
+        
         await destination.create({
-            name: name,
-            coordinat: coordinat,
-            location: location,
-            description: description,
-            imageURL: imgURL,
-            price: price,
-            rating: rating
+            Place_Name: Place_Name,
+            Description: Description,
+            Category: Category,
+            City: City,
+            Coordinate: Coordinate,
+            ImageURL: resImage.secure_url
         })
         res.status(200).json({
             success: true,

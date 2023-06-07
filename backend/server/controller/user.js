@@ -8,15 +8,19 @@ exports.signUp = async (req, res) => {
     if (!req.body) {
         res.status(404).json({ message: 'Data cannot be empty' })
     }
-    const { name, username, password } = req.body
+    const { email, name, username, password, province, city, birth } = req.body
 
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt)
     try {
         await user.create({
+            email: email,
             name: name,
             username: username,
             password: hashPassword,
+            province: province,
+            city: city,
+            birth: birth,
             role: "CLIENT"
         });
         res.status(200).json({ message: 'New user added' })
@@ -30,6 +34,7 @@ exports.signIn = async (req, res) => {
         res.status(404).json({ message: 'Data cannot be empty' })
     }
     try {
+        console.log(req.body)
         const userAuth = await user.findAll({
             where: {
                 username: req.body.username
@@ -37,9 +42,13 @@ exports.signIn = async (req, res) => {
         });
         const match = await bcrypt.compare(req.body.password, userAuth[0].password)
         if (match) {
+            const email = userAuth[0].email
             const id = userAuth[0].id
             const name =  userAuth[0].name
             const username =  userAuth[0].username
+            const province = JSON.parse(userAuth[0].province)
+            const city = JSON.parse(userAuth[0].city)
+            const birth = userAuth[0].birth
             const role =  userAuth[0].role
             const token = jwt.sign({ id, username }, process.env.ACCESS_TOKEN_SECRET, {
                 expiresIn: '20s'
@@ -61,8 +70,12 @@ exports.signIn = async (req, res) => {
                 statusCode: res.statusCode,
                 message: "Login succesfully",
                 data: {
+                    email,
                     name,
                     username,
+                    province,
+                    city,
+                    birth,
                     role,
                     token,
                     id
