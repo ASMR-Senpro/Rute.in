@@ -10,9 +10,9 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col items-center justify-between">
       <main className="mt-24 w-10/12 bg-white relative">
-        {/* <div className="absolute left-[-280px] top-[100px]">
+        <div className="absolute -left-64 top-80">
           <img src={TouristImg} alt="Tourist Image"></img>
-        </div> */}
+        </div>
         <section className="min-h-screen max-h-screen flex flex-col justify-start">
           <div className="flex flex-col justify-start">
             <div
@@ -26,14 +26,13 @@ const Dashboard = () => {
             </div>
             <div
               id="searchbar"
-              className="flex flex-col justify-center items-center mx-auto w-10/12 h-full"
+              className="flex flex-col justify-center items-center mx-auto w-10/12 h-full gap-4"
             >
               <SearchBar />
               <div
                 id="white__space"
-                className="h-64 rounded-3xl bg-white shadow-2xl w-[1080px]"
+                className="h-64 rounded-3xl bg-white shadow-2xl w-10/12 z-50 bg-opacity-60"
               >
-                
               </div>
             </div>
           </div>

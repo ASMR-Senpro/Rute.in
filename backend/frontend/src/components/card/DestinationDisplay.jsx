@@ -1,4 +1,6 @@
-const DestDisplay = ({destination, index}) => {
+import { Link } from "react-router-dom";
+
+const DestDisplay = ({ destination, index }) => {
     return (
         <>
             <div key={index} className="border-orange-700 border-2 p-4 bg-white shadow-md rounded-md">
@@ -11,10 +13,13 @@ const DestDisplay = ({destination, index}) => {
                     <h3 className="text-xl font-semibold">{destination.Place_Name}</h3>
                     <p className="text-gray-500">{destination.Location}</p>
                     <div className="justify-end mt-3 text-xs">
-                        <p
+                        <Link
+                            to={{
+                                pathname: '/article',
+                                state: { destination }
+                            }}
                             className="text-orange cursor-pointer"
-                            // onClick={(e) => { viewDetail(true) }}
-                        >...klik detail</p>
+                        >...klik detail</Link>
                     </div>
                 </div>
             </div>
