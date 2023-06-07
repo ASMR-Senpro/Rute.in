@@ -3,8 +3,12 @@ import Navbar from "../../components/navbar/Navbar"
 import Footer from "../../components/footer/Footer"
 import MapImg from "../../assets/images/map.png"
 import ReviewCard from "../../components/card/ReviewCard"
+import {useLocation} from 'react-router-dom'
 
 const Article = () => {
+    const location = useLocation();
+    const dest = location.state
+    console.log(location)
     return (
         <div>
             {/* navbar */}

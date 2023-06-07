@@ -62,7 +62,10 @@ export default function Admin({ destination }) {
               {destination.City}
             </p>
             <Link
-              to="/article"
+              to={{
+                pathname: '/article',
+                state: {destination}
+              }}
               class="text-right text-b-sm mb-3 font-normal text-neutral-50 dark:text-gray-400"
             >...klik untuk detail</Link>
           </div>

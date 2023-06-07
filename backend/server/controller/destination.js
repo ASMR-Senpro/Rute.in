@@ -18,14 +18,17 @@ exports.create = async (req, res) => {
             width: 960,
             crop: "scale"
         })
+
+        const img = [resImage.secure_url]
+        const coord = [JSON.stringify(Coordinate)]
         
         await destination.create({
             Place_Name: Place_Name,
             Description: Description,
             Category: Category,
             City: City,
-            Coordinate: JSON.stringify(Coordinate),
-            ImageURL: resImage.secure_url
+            Coordinate: coord,
+            ImageURL: img
         })
         res.status(200).json({
             success: true,
