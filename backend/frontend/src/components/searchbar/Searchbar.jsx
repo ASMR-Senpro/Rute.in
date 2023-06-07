@@ -14,7 +14,6 @@ export default function SearchBar({ term, getSearchTerm, inputEl }) {
             console.log(error);
         }
     };
-    console.log(provData)
 
     useEffect(() => {
         fetchData();

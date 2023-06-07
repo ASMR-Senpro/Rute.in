@@ -89,6 +89,9 @@ export default function Navbar() {
                     <Link to="/destination">Destinasi</Link>
                   </li>
                   <li className="">
+                    <Link to="/package">Paket Wisata</Link>
+                  </li>
+                  <li className="">
                     <Link to="/about">Tentang</Link>
                   </li>
                 </ul>

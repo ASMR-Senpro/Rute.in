@@ -7,6 +7,7 @@ import About from "./About"
 import Article from "./Article"
 import Reccomen from "./Recommen"
 import Profile from "../Profile";
+import Package from "./Package";
 
 const Landing = () => {
   return (
@@ -17,6 +18,7 @@ const Landing = () => {
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path="/destination" element={<Destination />} />
+            <Route path="/package" element={<Package />} />
             <Route path="/about" element={<About />} />
             <Route path="/article" element={<Article />} />
             <Route path="/reccomen" element={<Reccomen />} />
