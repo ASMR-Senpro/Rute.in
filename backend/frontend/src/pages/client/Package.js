@@ -1,16 +1,27 @@
+import { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import PackageBar from "../../components/recommen/PackageBar";
 import SearchBar from "../../components/searchbar/Searchbar";
 
-import {usePackageContext} from '../../hooks/package/usePackageContext'
+import { usePackageContext } from '../../hooks/package/usePackageContext'
 import { useDisplayContext } from "../../hooks/useDisplayContext";
 import useFetch from "../../hooks/useFetch";
+import Pagination from "../../components/navbar/Pagination";
 
 const Package = () => {
     const { packages, dispatch } = usePackageContext();
     const { notify, isPending, error, setLoading, setError } = useDisplayContext();
     const url = "http://localhost:3100/api/package/"
     useFetch({ url, dispatch, setError, setLoading, type: "GET_PACKAGE" });
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage] = useState(5);
+
+    const indexOfLastTask = currentPage * postPerPage;
+    const indexOfFirstTask = indexOfLastTask - postPerPage;
+    const packCurrent = packages && packages.slice(indexOfFirstTask, indexOfLastTask);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <>
@@ -27,9 +38,12 @@ const Package = () => {
 
                 {/* main content */}
                 <main className="py-24 w-full bg-cyan-300">
+                    <div>
+                        {packages && < Pagination postPerPage={postPerPage} totalPost={packages.length} paginate={paginate} />}
+                    </div>
                     <div className="flex flex-col gap-4 justify-center items-center">
-                        {packages
-                            && packages.map((item, index) => (
+                        {packCurrent
+                            && packCurrent.map((item, index) => (
                                 <PackageBar item={item} />
                             ))}
                     </div>

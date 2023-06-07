@@ -11,6 +11,8 @@ function PackageBar({ item }) {
         item.Place_Tourism5
     ]
 
+    const wordLimit = 20;
+
     return (
         <div className="w-10/12 h-20 rounded-lg border-[3px] border-neutral-300 bg-neutral-50 flex">
             {/* title */}
@@ -23,7 +25,11 @@ function PackageBar({ item }) {
                     {place
                         && place.map((dest) => (
                             <div className="text- text-center w-1/5 h-full rounded-md border-2 border-neutral-100 flex justify-center items-center">
-                                {dest}
+                                {dest?.length>wordLimit?
+                                    <p>{dest.substr(0, wordLimit)}...</p>
+                                :
+                                    <p>{dest}</p>
+                                }
                             </div>
                         ))}
                 </div>
