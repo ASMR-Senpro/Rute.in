@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from 'axios';
 import ProvinceOption from '../register/ProvinceOption'
 
-export default function SearchBar({ term, getSearchTerm, inputEl }) {
+export default function SearchBar({ searchTerm, getSearchTerm, searchEl }) {
     const [province, setProvince] = useState("")
 
     const [provData, setProvData] = useState([])
@@ -27,7 +27,7 @@ export default function SearchBar({ term, getSearchTerm, inputEl }) {
 
     return (
         <div className="flex justify-center w-full">
-            <form style={{ width: "1080px" }}>
+            <div style={{ width: "1080px" }}>
                 <div className="flex bg-orange-700 p-1 rounded-md">
                     <select
                         style={{ width: "342px" }}
@@ -42,13 +42,14 @@ export default function SearchBar({ term, getSearchTerm, inputEl }) {
 
                     <div className="relative w-full">
                         <input
-                            ref={inputEl}
-                            value={term}
+                            ref={searchEl}
+                            value={searchTerm}
+                            onChange={getSearchTerm}
                             type="search"
                             id="search-dropdown"
                             className="p-2.5 w-full z-20 text-sm text-black bg-gray-50 rounded-r-lg border-none"
                             placeholder="masukkan tujuan"
-                            required />
+                        />
                         <button
                             type="submit"
                             className="h-full absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-md bg-orange-700">
@@ -113,7 +114,7 @@ export default function SearchBar({ term, getSearchTerm, inputEl }) {
                         </li>
                     </ul>
                 </div>
-            </form>
+            </div>
         </div>
     );
 

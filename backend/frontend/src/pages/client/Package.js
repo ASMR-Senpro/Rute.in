@@ -8,6 +8,8 @@ import { useDisplayContext } from "../../hooks/useDisplayContext";
 import useFetch from "../../hooks/useFetch";
 import Pagination from "../../components/navbar/Pagination";
 
+import {useSearch} from '../../hooks/package/useSearch'
+
 const Package = () => {
     const { packages, dispatch } = usePackageContext();
     const { notify, isPending, error, setLoading, setError } = useDisplayContext();
@@ -23,6 +25,9 @@ const Package = () => {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+    const { searchResult, getSearchTerm, searchEl, searchTerm } = useSearch(packages)
+    const packList = searchTerm < 1 ? packCurrent : searchResult
+
     return (
         <>
             <div>
@@ -32,7 +37,11 @@ const Package = () => {
                 {/* searchbar */}
                 {/* <div className="mt-48 mb-24 flex justify-center items-center"> */}
                 <div className="top-16 sticky flex flex-col justify-end z-20 bg-white gap-4 py-4">
-                    <SearchBar />
+                    <SearchBar 
+                        searchEl={searchEl}
+                        searchTerm={(searchTerm)}
+                        getSearchTerm={getSearchTerm}
+                    />
                 </div>
                 {/* </div> */}
 
@@ -42,8 +51,8 @@ const Package = () => {
                         {packages && < Pagination postPerPage={postPerPage} totalPost={packages.length} paginate={paginate} />}
                     </div>
                     <div className="flex flex-col gap-4 justify-center items-center">
-                        {packCurrent
-                            && packCurrent.map((item, index) => (
+                        {packList
+                            && packList.map((item, index) => (
                                 <PackageBar item={item} />
                             ))}
                     </div>

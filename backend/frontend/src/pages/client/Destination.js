@@ -26,9 +26,6 @@ const Destination = () => {
     const { searchResult, getSearchTerm, searchEl, searchTerm } = useSearch(destinations)
     const destList = searchTerm < 1 ? destCurrent : searchResult
 
-    const location = [...new Set(destinations && destinations.map(item => item.Location))];
-    console.log(location)
-
     return (
         <>
             <div className="min-h-screen flex flex-col justify-between">

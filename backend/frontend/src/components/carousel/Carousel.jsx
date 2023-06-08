@@ -102,7 +102,7 @@ export default function Carousel() {
                 />
               </div>
               <div className="card-desc text-center mt-4">
-                <Link to="">
+                <Link to="/article">
                   <h4 className="text-h-sm font-semibold">{item.Place_Name}</h4>
                 </Link>
                 <h5 className="text-b-md text-sm">{item.City}</h5>

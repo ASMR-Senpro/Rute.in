@@ -7,7 +7,7 @@ import {useLocation} from 'react-router-dom'
 
 const Article = () => {
     const location = useLocation();
-    const dest = location.state
+    // const {destination} = JSON.parse(location.search)
     console.log(location)
     return (
         <div>
@@ -38,17 +38,6 @@ const Article = () => {
                     <div className="flex font-Poppins text-[18px]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
                     </div>
-                </div>
-
-                {/* Fasilitas */}
-                <div className="flex flex-col gap-4 w-full">
-                    <div className="flex border-b-[3px] border-orange-700 font-Poppins font-medium text-h-md">Fasilitas</div>
-                    <ul class="list-disc list-inside">
-                        <li>Toilet</li>
-                        <li>Mushola</li>
-                        <li>Mall</li>
-                        <li>Food Court</li>
-                    </ul>
                 </div>
 
                 {/* Lokasi */}
