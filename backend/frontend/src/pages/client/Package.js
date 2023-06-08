@@ -9,6 +9,7 @@ import useFetch from "../../hooks/useFetch";
 import Pagination from "../../components/navbar/Pagination";
 
 import {useSearch} from '../../hooks/package/useSearch'
+import { useFilter } from "../../hooks/package/useFilter";
 
 const Package = () => {
     const { packages, dispatch } = usePackageContext();
@@ -26,6 +27,7 @@ const Package = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     const { searchResult, getSearchTerm, searchEl, searchTerm } = useSearch(packages)
+    const { filterResult, getFilterTerm, filterEl, filterTerm } = useFilter(packages)
     const packList = searchTerm < 1 ? packCurrent : searchResult
 
     return (
@@ -41,6 +43,9 @@ const Package = () => {
                         searchEl={searchEl}
                         searchTerm={(searchTerm)}
                         getSearchTerm={getSearchTerm}
+                        filterEl={filterEl}
+                        filterTerm={filterTerm}
+                        getFilterTerm={getFilterTerm}
                     />
                 </div>
                 {/* </div> */}

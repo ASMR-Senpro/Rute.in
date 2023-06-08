@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from 'axios';
 import ProvinceOption from '../register/ProvinceOption'
 
-export default function SearchBar({ searchTerm, getSearchTerm, searchEl }) {
+export default function SearchBar({ searchTerm, getSearchTerm, searchEl, filterTerm, getFilterTerm, filterEl }) {
     const [province, setProvince] = useState("")
 
     const [provData, setProvData] = useState([])
@@ -30,10 +30,11 @@ export default function SearchBar({ searchTerm, getSearchTerm, searchEl }) {
             <div style={{ width: "1080px" }}>
                 <div className="flex bg-orange-700 p-1 rounded-md">
                     <select
+                        ref={filterEl}
                         style={{ width: "342px" }}
                         className="bg-orange-700 flex-shrink-0 text-white z-10 inline-flex justify-center items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-l-lg dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-                        value={province}
-                        onChange={(e) => { setProvince(e.target.value) }}
+                        value={filterTerm}
+                        onChange={getFilterTerm}
                     >
                         {provData?.map((prov, index) => {
                             return <ProvinceOption prov={prov} />

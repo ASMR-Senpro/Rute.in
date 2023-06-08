@@ -26,6 +26,7 @@ export const useSignUp = () => {
             dispatch({ type: 'LOGIN', payload: user.data });
             setIsPending(false);
             setError(null);
+            window.location.href('/login')
             return {
                 isError: false,
                 message: 'Sign Up Success!'

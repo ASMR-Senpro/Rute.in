@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const DestDisplay = ({ destination, index }) => {
-    const state = destination
-    console.log(state)
     const id = destination.id
+    console.log(id)
     return (
         <>
             <div key={index} className="border-orange-700 border-2 p-4 bg-white shadow-md rounded-md">
@@ -19,7 +19,6 @@ const DestDisplay = ({ destination, index }) => {
                         <Link
                             to={{
                                 pathname: '/article',
-                                state
                             }
                         }
                             className="text-orange cursor-pointer"

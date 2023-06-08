@@ -3,10 +3,17 @@ import React, { useState } from "react"
 import DeleteModal from "../modal/DeleteModal.jsx"
 import { Link, useParams } from "react-router-dom"
 import EditForm from "../modal/EditForm.jsx"
+import { useHandleDelete } from '../../hooks/destination/useHandleDelete.js'
+import { useDisplayContext } from "../../hooks/useDisplayContext.js"
+import { useDestinationContext } from "../../hooks/useDestinationContext.js"
 
 export default function Admin({ destination }) {
+  const { dispatch } = useDestinationContext();
+  const { notify, isPending, error, setLoading, setError } = useDisplayContext();
   const [showDelModal, setShowDelModal] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
+
+  const { handleRemove: handleDelete } = useHandleDelete({ url: 'http://localhost:3100/api/destinations/', type: 'DELETE_DESTINATION', dispatch, data: destination, setLoading, setError, closeDetailPopup: setShowDelModal });
 
   return (
     <>
@@ -36,7 +43,7 @@ export default function Admin({ destination }) {
               </h6>
               <div class="justify-end flex flex-row">
                 <button
-                  onClick={()=>{setShowEdit(true)}}
+                  onClick={() => { setShowEdit(true) }}
                 >
                   <Icon
                     icon="mi:edit-alt"
@@ -54,7 +61,7 @@ export default function Admin({ destination }) {
                     className="text-h-lg text-neutral-100"
                   ></Icon>
                 </button>
-                {showDelModal && <DeleteModal setOpenModal={setShowDelModal} />}
+                {showDelModal && <DeleteModal handleDelete={handleDelete} setOpenModal={setShowDelModal} />}
               </div>
             </div>
 
@@ -64,7 +71,7 @@ export default function Admin({ destination }) {
             <Link
               to={{
                 pathname: '/article',
-                state: {destination}
+                state: { destination }
               }}
               class="text-right text-b-sm mb-3 font-normal text-neutral-50 dark:text-gray-400"
             >...klik untuk detail</Link>

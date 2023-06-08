@@ -15,26 +15,28 @@ import DestDisplay from "../../components/card/DestinationDisplay"
 import Recommend from "../../components/carousel/Reccomend"
 
 const Dashboard = () => {
-  const {user} = useAuthContext();
-  const user_id = user!==null ? user.id : 1
+  const { user } = useAuthContext();
+  const user_id = user !== null ? user.id : null
 
   const [recommend, setRecommend] = useState()
 
   const sendData = async () => {
     try {
-      const data = {
-        user_id
-      };
+      if (user_id !== null) {
+        const data = {
+          user_id
+        };
 
-      const response = await axios.post('http://127.0.0.1:5000/recommend', data);
-      setRecommend(response.data)
-      console.log(response.data);
+        const response = await axios.post('http://127.0.0.1:5000/recommend', data);
+        setRecommend(response.data)
+        console.log(response.data);
+      }
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
-  	sendData();
+    sendData();
   }, []);
 
   return (
@@ -63,7 +65,8 @@ const Dashboard = () => {
                 id="white__space"
                 className="flex-flex-col h-72 rounded-3xl bg-white shadow-2xl w-11/12 z-50 bg-opacity-60"
               >
-                <p className="text-center text-h-md mt-4 font-bold" >Recommendation for you</p>
+                {user_id!==null && <p className="text-center text-h-md mt-4 font-bold" >Recommendation for you</p>}
+                
                 <div>
                   {recommend && <Recommend recommend={recommend} />}
                 </div>

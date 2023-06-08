@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
             Place_Name: Place_Name,
             Description: Description,
             Category: Category,
-            City: City,
+            City: City.name,
             Coordinate: coord,
             ImageURL: img
         })

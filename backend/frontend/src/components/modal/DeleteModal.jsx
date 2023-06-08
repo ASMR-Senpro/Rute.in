@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react"
 
 //https://larainfo.com/blogs/react-tailwind-css-dialog-modal-example
 
-export default function DeleteModal({ setOpenModal }) {
+export default function DeleteModal({ handleDelete, setOpenModal }) {
   return (
     <>
       <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -39,7 +39,7 @@ export default function DeleteModal({ setOpenModal }) {
             <div className="flex gap-2">
               <button
                 className="w-full p-2 flex-1 text-white bg-red-700 rounded-md outline-none ring-offset-2 ring-red-100 focus:ring-2"
-                onClick={() => setOpenModal(false)}
+                onClick={handleDelete}
               >
                 Hapus
               </button>
