@@ -41,7 +41,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col items-center justify-between">
-      <main className="mt-24 w-10/12 bg-white relative">
+      <main className="mt-24 w-10/12 bg-white relative flex flex-col">
         <div className="absolute -left-64 top-60">
           <img src={TouristImg} alt="Tourist Image"></img>
         </div>
@@ -51,7 +51,7 @@ const Dashboard = () => {
               id="title"
               className="flex flex-col justify-center items-center text-h-lg font-bold py-12"
             >
-              <h1>Bingung mau wisata ke mana?</h1>
+              <h1 className="text-center">Bingung mau wisata ke mana?</h1>
               <h1>
                 di <span className="text-orange-700">Rute.in</span> aja
               </h1>
@@ -73,7 +73,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div
+          {/* <div
             id="jelajahi"
             className="my-8 p-4 flex flex-col gap-2 items-center justify-center"
           >
@@ -86,7 +86,7 @@ const Dashboard = () => {
                 className="text-h-md text-cyan-500"
               ></Icon>
             </div>
-          </div>
+          </div> */}
         </section>
         <section>
           {/* carousel */}

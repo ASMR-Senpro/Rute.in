@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
 import PackageBar from "../../components/recommen/PackageBar";
 import SearchBar from "../../components/searchbar/Searchbar";
 
@@ -34,7 +33,7 @@ const Package = () => {
         <>
             <div>
                 {/* navbar */}
-                <Navbar />
+                {/* <Navbar /> */}
 
                 {/* searchbar */}
                 {/* <div className="mt-48 mb-24 flex justify-center items-center"> */}
