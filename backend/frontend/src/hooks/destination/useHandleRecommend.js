@@ -1,10 +1,9 @@
 import { useAuthContext } from "../auth/useAuthContext";
 
-export const useHandleAdd = ({url, data, type, dispatch, setLoading, setError, closeAddPopup}) => {
+export const useHandleRecommend = ({url, data, type, dispatch, setLoading, setError}) => {
     const { user } = useAuthContext();
 
     const add = async () => {
-        
         if (!user) {
             // notify.info('You must be logged in');
             return;
@@ -20,16 +19,16 @@ export const useHandleAdd = ({url, data, type, dispatch, setLoading, setError, c
             body: JSON.stringify(data),
         })
 
-        const json = await response.json();
+        const json = await response.data;
+        console.log(response)
         
-        if (json.success) {
-            dispatch({ type: type, payload: json.data });
-            closeAddPopup();
+        if (json) {
+            dispatch({ type: type, payload: json });
             setLoading(false);
             setError(null);
             // notify.info(json.message);
         }
-        if (!json.success) {
+        if (!json) {
             setLoading(false);
             setError(json.error);
             // notify.error(json.error);
@@ -37,8 +36,6 @@ export const useHandleAdd = ({url, data, type, dispatch, setLoading, setError, c
     }
 
     const handleAdd = async (e) => {
-        e.stopPropagation();
-        e.preventDefault();
         await add();
     }
 

@@ -1,32 +1,29 @@
 import { useAuthContext } from "../auth/useAuthContext";
 
-export const useHandleAdd = ({url, data, type, dispatch, setLoading, setError, closeAddPopup}) => {
+export const useHandleDelete = ({url, data, type, dispatch, setLoading, setError, closeDetailPopup}) => {
     const { user } = useAuthContext();
 
-    const add = async () => {
-        
+    const remove = async () => {
         if (!user) {
             // notify.info('You must be logged in');
             return;
         }
 
         setLoading(true);
-        const response = await fetch(url, {
-            method: 'POST',
+        const response = await fetch(url + data._id, {
+            method: 'DELETE',
             headers: {
-                "Content-Type": "application/json",
                 // 'Authorization': `Bearer ${user.token}`
-            },
-            body: JSON.stringify(data),
-        })
+            }
+        });
 
         const json = await response.json();
-        
+
         if (json.success) {
-            dispatch({ type: type, payload: json.data });
-            closeAddPopup();
+            closeDetailPopup();
             setLoading(false);
             setError(null);
+            dispatch({ type: type, payload: json.data });
             // notify.info(json.message);
         }
         if (!json.success) {
@@ -36,11 +33,11 @@ export const useHandleAdd = ({url, data, type, dispatch, setLoading, setError, c
         }
     }
 
-    const handleAdd = async (e) => {
+    const handleRemove = async (e) => {
         e.stopPropagation();
         e.preventDefault();
-        await add();
+        await remove();
     }
 
-    return {add, handleAdd};
+    return { remove, handleRemove };
 }

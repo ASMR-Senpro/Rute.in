@@ -8,3 +8,7 @@ body {
   background: white;
   font-family: "Poppins";
 }
+
+.overlay {
+  @apply bg-black opacity-40 fixed w-full h-full top-0 bottom-0 right-0 left-0 transition-all;
+}
