@@ -27,7 +27,7 @@ const Dashboard = () => {
           user_id
         };
 
-        const response = await axios.post('http://127.0.0.1:5000/recommend', data);
+        const response = await axios.post('http://127.0.0.1:5001/recommend', data);
         setRecommend(response.data)
         console.log(response.data);
       }

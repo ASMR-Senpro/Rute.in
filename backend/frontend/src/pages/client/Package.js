@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PackageBar from "../../components/recommen/PackageBar";
 import SearchBar from "../../components/searchbar/Searchbar";
 
@@ -9,8 +9,13 @@ import Pagination from "../../components/navbar/Pagination";
 
 import {useSearch} from '../../hooks/package/useSearch'
 import { useFilter } from "../../hooks/package/useFilter";
+import { useLocation } from "react-router-dom";
+import { useRecommend } from "../../hooks/package/useRecommend";
 
 const Package = () => {
+    const locate = useLocation()
+    const locSearch = locate.search?.replace(/%20/g, " ").replace("?", "")
+
     const { packages, dispatch } = usePackageContext();
     const { notify, isPending, error, setLoading, setError } = useDisplayContext();
     const url = "http://localhost:3100/api/package/"
@@ -21,7 +26,16 @@ const Package = () => {
 
     const indexOfLastTask = currentPage * postPerPage;
     const indexOfFirstTask = indexOfLastTask - postPerPage;
-    const packCurrent = packages && packages.slice(indexOfFirstTask, indexOfLastTask);
+    // const packCurrent = packages && packages.slice(indexOfFirstTask, indexOfLastTask);
+    
+    const { recResult, getRecTerm, recEl, recTerm, setRecTerm } = useRecommend(packages)
+    useEffect(()=>{
+
+        setRecTerm(locSearch? locSearch : "")
+        getRecTerm(locSearch)
+    },[])
+
+    const packCurrent = packages && locSearch? recResult?.slice(indexOfFirstTask, indexOfLastTask) : packages?.slice(indexOfFirstTask, indexOfLastTask);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -52,7 +66,7 @@ const Package = () => {
                 {/* main content */}
                 <main className="py-24 w-full bg-cyan-300">
                     <div>
-                        {packages && < Pagination postPerPage={postPerPage} totalPost={packages.length} paginate={paginate} />}
+                        {packages && searchTerm < 1 && < Pagination postPerPage={postPerPage} totalPost={packages.length} paginate={paginate} currentPage={currentPage} />}
                     </div>
                     <div className="flex flex-col gap-4 justify-center items-center">
                         {packList
