@@ -15,7 +15,7 @@ const Destination = () => {
     useFetch({ url, dispatch, setError, setLoading, type: "GET_DESTINATION" });
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage] = useState(8);
+    const [postPerPage] = useState(7);
 
     const indexOfLastTask = currentPage * postPerPage;
     const indexOfFirstTask = indexOfLastTask - postPerPage;
@@ -46,15 +46,18 @@ const Destination = () => {
                     </div>
                     <div className="sm:mx-36">
                         <h1 className="text-center text-h-lg font-bold mb-6" >Pilih Destinasi Wisatamu</h1>
+                        <div>
+                            {destinations && searchTerm < 1 && < Pagination postPerPage={postPerPage} totalPost={destinations.length} paginate={paginate} currentPage={currentPage} />}
+                        </div>
                         <div className=" flex flex-wrap gap-8 justify-center">
                             {destList && destList.map((destination, index) => {
                                 return <DestDisplay destination={destination} />
                             })}
                         </div>
                     </div>
-                    <div>
-                        {destinations && < Pagination postPerPage={postPerPage} totalPost={destinations.length} paginate={paginate} />}
-                    </div>
+                    {/* <div>
+                        {destinations && < Pagination postPerPage={postPerPage} totalPost={destinations.length} paginate={paginate} currentPage={currentPage} />}
+                    </div> */}
                 </main>
             </div>
         </>
